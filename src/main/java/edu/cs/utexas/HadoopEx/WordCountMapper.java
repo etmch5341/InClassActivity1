@@ -16,11 +16,16 @@ public class WordCountMapper extends Mapper<Object, Text, Text, IntWritable> {
 
 	public void map(Object key, Text value, Context context) 
 			throws IOException, InterruptedException {
+
+		String line = value.toString();
 		
-		StringTokenizer itr = new StringTokenizer(value.toString());
-		while (itr.hasMoreTokens()) {
-			word.set(itr.nextToken());
-			context.write(word, counter);
+		StringTokenizer itr = new StringTokenizer(line, ",");
+		for(int i = 0; i < 7 && itr.hasMoreTokens(); i++){
+			itr.nextToken();
 		}
+
+		word.set(itr.nextToken());
+		context.write(word, counter);
+
 	}
 }
