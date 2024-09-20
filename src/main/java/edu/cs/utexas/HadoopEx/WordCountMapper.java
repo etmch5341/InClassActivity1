@@ -17,15 +17,23 @@ public class WordCountMapper extends Mapper<Object, Text, Text, IntWritable> {
 	public void map(Object key, Text value, Context context) 
 			throws IOException, InterruptedException {
 
-		String line = value.toString();
+		// String line = value.toString();
 		
-		StringTokenizer itr = new StringTokenizer(line, ",");
-		for(int i = 0; i < 7 && itr.hasMoreTokens(); i++){
-			itr.nextToken();
-		}
+		// StringTokenizer itr = new StringTokenizer(line, ",");
+		// for(int i = 0; i < 7 && itr.hasMoreTokens(); i++){
+		// 	itr.nextToken();
+		// }
 
-		word.set(itr.nextToken());
-		context.write(word, counter);
+		// word.set(itr.nextToken());
+		// context.write(word, counter);
+
+		String[] fields = value.toString().split(",");
+
+        if (fields.length > 11) {
+            String origin_name = fields[7];
+            word.set(origin_name);
+            context.write(word, counter);
+        }
 
 	}
 }
