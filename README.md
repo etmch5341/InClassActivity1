@@ -1,5 +1,7 @@
 # Project Template - Top-K Hadoop Example. 
 
+# In Class Activity - TASK 1
+
 # Running on Laptop     ####
 
 Prerequisite:
